@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Experius\SansecReport\Api\SansecReportsManagementInterface" type="Experius\SansecReport\Model\SansecReportsManagement"/>
+	<preference for="Experius\SansecReport\Api\SansecReportsRepositoryInterface" type="Experius\SansecReport\Model\SansecReportsRepository"/>
+	<preference for="Experius\SansecReport\Api\Data\SansecReportsInterface" type="Experius\SansecReport\Model\SansecReports"/>
+	<preference for="Experius\SansecReport\Api\Data\SansecReportsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Experius\SansecReport\Model\ResourceModel\SansecReports\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">experius_sansecreport_sansecreports</argument>
+			<argument name="resourceModel" xsi:type="string">Experius\SansecReport\Model\ResourceModel\SansecReports\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="experius_sansecreport_sansecreports_listing_data_source" xsi:type="string">Experius\SansecReport\Model\ResourceModel\SansecReports\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">experius_sansecreport_sansecreports_form.sansecreports_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Experius\SansecReport\Block\Adminhtml\SansecReports\View\BackButton"/>
+            <button name="verify" class="Experius\SansecReport\Block\Adminhtml\SansecReports\View\VerifyButton"/>
+		</buttons>
+		<namespace>experius_sansecreport_sansecreports_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>experius_sansecreport_sansecreports_form.sansecreports_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="sansecreports_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="sansecreports_form_data_source" class="Experius\SansecReport\Model\SansecReports\DataProvider">
+			<settings>
+				<requestFieldName>sansecreports_id</requestFieldName>
+				<primaryFieldName>sansecreports_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+        <htmlContent name="scan_header_block">
+            <block class="Experius\SansecReport\Block\Adminhtml\SansecReports\View\Header"
+                   name="scan_header_view"
+                   template="Experius_SansecReport::scan-header.phtml"
+            />
+        </htmlContent>
+    <fieldset name="detections">
+        <settings>
+            <label>Detections</label>
+        </settings>
+        <htmlContent name="detections_block">
+            <block class="Experius\SansecReport\Block\Adminhtml\SansecReports\View\Results"
+                   name="scan_detections_view"
+                   template="Experius_SansecReport::scan-detections.phtml"
+            />
+        </htmlContent>
+    </fieldset>
+    <fieldset name="results">
+        <settings>
+            <label>All Results</label>
+        </settings>
+        <htmlContent name="scan_results_block">
+            <block class="Experius\SansecReport\Block\Adminhtml\SansecReports\View\Results"
+                   name="scan_results_view"
+                   template="Experius_SansecReport::scan-results.phtml"
+            />
+        </htmlContent>
+	</fieldset>
+</form>

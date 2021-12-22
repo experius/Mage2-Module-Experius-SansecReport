@@ -1,0 +1,42 @@
+<?php
+
+/**
+* Copyright © Experius All rights reserved.
+* See COPYING.txt for license details.
+*/
+
+/** @var \Experius\SansecReport\Block\Adminhtml\SansecReports\View\Results $block */
+$resultArray = $block->getResultArray();
+$detections = $block->getDetectionAmount();
+?>
+<?php if ($detections > 0) : ?>
+    <?php foreach ($resultArray as $heading => $resultInfo) : ?>
+        <?php foreach ($resultInfo as $item => $value) : ?>
+            <?php if ($item == 'detections' && is_array($value)) : ?>
+                <div style="padding:3px;font-weight:bold;color:white;border-style:solid;border-width:3px 3px 0px 3px;border-top-left-radius:10px;border-color:#7b241c;background-color:#c0392b">
+                    <h3 style="color:white;margin:0 0 0;">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGQSURBVChTY2QAgsuXL7N/+PDB9vHjx15ALreQkNBxVlbWpc7Ozr9B8siA8erVqxw/f/6sP3ziVIqAvPrHZ8z8d5i+vONT5vz7kIf5f7aHh8c7qFowYGJjY3M7cPx0ootf8A9XR3tWLR29vz807C7fkzT59/3Xn0aoOjhgAtrgxaus+5yBV+jt2ff/rt768u8lSOI7G++Xz6y8VomJiWpglVDA9PHjR95fgtJPTr/9d+vyx39Pv/1hgLubjYOTC0hJQHgQwCQuLn7h/asXbA+//X//+x/DP5AgIyMDozjrPz7WHx/5gNzvIDEYYAKGxgxtrt//2P/+4AAJCLAycNgKM6jrMr4x+vDs0Vt+fv6LYJVQAA7WLVu2KPxkZGn8wi6o/ffvX1b2L6/EPr9+8fDJkyf6z549W/H////U+fPn/4FrAAGg5xgFBAQUWVhYZN+8efMFKAQyuRaI64B4CxCHAzV9g2vABoCGsAGpqUCcAsQXgNgbrwYYAGrcAIxcf2CI9jJBxQiBEGDSqf7+/fsMAJPtoBCTfoNeAAAAAElFTkSuQmCC" />
+                        Detection
+                    </h3>
+                </div>
+                <div style="padding:3px;border:3px solid;border-bottom-right-radius:10px;word-wrap:break-word;word-break:break-word;border-color:#7b241c;background-color:#f2d7d5">
+                <?php foreach ($value as $detectionHeader => $detectionValue) : ?>
+                    <?php if ($detectionHeader == 'moreinfo' && strpos($detectionValue, 'https') !== false) : ?>
+                        <p>
+                            <strong>
+                                <?= $detectionHeader ?>
+                            </strong>
+                            <a href="<?= $detectionValue ?>" target="_blank"><?= $detectionValue ?></a>
+                        </p>
+                        <?php continue; ?>
+                    <?php endif; ?>
+                    <p>
+                        <strong><?= $detectionHeader ?></strong>
+                        <?= $detectionValue ?>
+                    </p>
+                <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+<?php endif; ?>

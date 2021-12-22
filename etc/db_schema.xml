@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="experius_sansecreport_sansecreports" resource="default" engine="innodb" comment="experius_sansecreport_sansecreports Table">
+		<column xsi:type="int" name="sansecreports_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="sansecreports_id"/>
+		</constraint>
+		<column name="date_report" nullable="false" xsi:type="datetime" comment="date_report" default="CURRENT_TIMESTAMP"/>
+		<column name="detections_amount" nullable="false" xsi:type="int" comment="detections_amount" identity="false"/>
+        <column name="is_verified" nullable="false" xsi:type="smallint" comment="is_verified" identity="false" default="0"/>
+		<column name="ctx" nullable="false" xsi:type="text" comment="ctx"/>
+		<column name="results" nullable="true" xsi:type="text" comment="results"/>
+	</table>
+</schema>

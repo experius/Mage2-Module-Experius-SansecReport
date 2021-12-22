@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">experius_sansecreport_sansecreports_listing.experius_sansecreport_sansecreports_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>experius_sansecreport_sansecreports_columns</spinner>
+		<deps>
+			<dep>experius_sansecreport_sansecreports_listing.experius_sansecreport_sansecreports_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="experius_sansecreport_sansecreports_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">sansecreports_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Experius_SansecReport::SansecReports</aclResource>
+		<dataProvider name="experius_sansecreport_sansecreports_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>sansecreports_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="experius_sansecreport_sansecreports_columns">
+		<settings>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>sansecreports_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="sansecreports_id" sortOrder="10">
+			<settings>
+                <sorting>desc</sorting>
+				<filter>text</filter>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="date_report" sortOrder="20">
+			<settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <dateFormat>yyyy-MM-dd hh:mm:ss</dateFormat>
+                <timezone>false</timezone>
+				<label translate="true">Date Report</label>
+			</settings>
+		</column>
+		<column name="detections_amount" sortOrder="30">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Amount of Detections</label>
+			</settings>
+		</column>
+        <column name="is_verified" sortOrder="35" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <dataType>select</dataType>
+                <filter>select</filter>
+                <label translate="true">Has been Verified</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Experius\SansecReport\Ui\Component\Listing\Column\SansecReportsActions" sortOrder="40">
+            <settings>
+                <indexField>sansecreports_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+	</columns>
+</listing>
