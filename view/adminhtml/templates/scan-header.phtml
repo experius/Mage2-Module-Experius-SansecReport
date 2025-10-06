@@ -5,7 +5,10 @@
  * See COPYING.txt for license details.
  */
 
-/** @var \Experius\SansecReport\Block\Adminhtml\SansecReports\View\Header $block */
+/**
+ * @var \Experius\SansecReport\Block\Adminhtml\SansecReports\View\Header $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
 $headerArray = $block->getHeaderArray();
 
 ?>
@@ -18,8 +21,8 @@ $headerArray = $block->getHeaderArray();
 <div style="padding:3px;word-wrap:break-word;word-break:break-word;">
     <?php foreach ($headerArray as $header) : ?>
         <p>
-            <strong><?= $header['name'] ?></strong>
-            <?= $header['value'] ?>
+            <strong><?= $escaper->escapeHtml($header['name']) ?></strong>
+            <?= $escaper->escapeHtml($header['value']) ?>
         </p>
     <?php endforeach; ?>
 </div>

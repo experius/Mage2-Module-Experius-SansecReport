@@ -5,7 +5,10 @@
  * See COPYING.txt for license details.
  */
 
-/** @var \Experius\SansecReport\Block\Adminhtml\SansecReports\View\Results $block */
+/**
+ * @var \Experius\SansecReport\Block\Adminhtml\SansecReports\View\Results $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
 $resultArray = $block->getResultArray();
 
 ?>
@@ -18,7 +21,7 @@ $resultArray = $block->getResultArray();
             <h3 style="color:white;margin:0 0 0;">
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGQSURBVChTY2QAgsuXL7N/+PDB9vHjx15ALreQkNBxVlbWpc7Ozr9B8siA8erVqxw/f/6sP3ziVIqAvPrHZ8z8d5i+vONT5vz7kIf5f7aHh8c7qFowYGJjY3M7cPx0ootf8A9XR3tWLR29vz807C7fkzT59/3Xn0aoOjhgAtrgxaus+5yBV+jt2ff/rt768u8lSOI7G++Xz6y8VomJiWpglVDA9PHjR95fgtJPTr/9d+vyx39Pv/1hgLubjYOTC0hJQHgQwCQuLn7h/asXbA+//X//+x/DP5AgIyMDozjrPz7WHx/5gNzvIDEYYAKGxgxtrt//2P/+4AAJCLAycNgKM6jrMr4x+vDs0Vt+fv6LYJVQAA7WLVu2KPxkZGn8wi6o/ffvX1b2L6/EPr9+8fDJkyf6z549W/H////U+fPn/4FrAAGg5xgFBAQUWVhYZN+8efMFKAQyuRaI64B4CxCHAzV9g2vABoCGsAGpqUCcAsQXgNgbrwYYAGrcAIxcf2CI9jJBxQiBEGDSqf7+/fsMAJPtoBCTfoNeAAAAAElFTkSuQmCC" />
                 Check -
-                <?= $heading ?>
+                <?= $escaper->escapeHtml($heading) ?>
             </h3>
         </div>
     <?php if ($block->getHasDetection($resultInfo)) : ?>
@@ -33,15 +36,15 @@ $resultArray = $block->getResultArray();
                 <?php if ($detectionHeader == 'moreinfo' && strpos($detectionValue, 'https') !== false) : ?>
                     <p style="text-indent: 25px;">
                         <strong>
-                            <?= $detectionHeader ?>
+                            <?= $escaper->escapeHtml($detectionHeader) ?>
                         </strong>
-                        <a href="<?= $detectionValue ?>" target="_blank"><?= $detectionValue ?></a>
+                        <a href="<?= $escaper->escapeUrl($detectionValue) ?>" target="_blank"><?= $escaper->escapeUrl($detectionValue) ?></a>
                     </p>
                     <?php continue; ?>
                 <?php endif; ?>
                 <p style="text-indent: 25px;">
-                <strong><?= $detectionHeader ?></strong>
-                <?= $detectionValue ?>
+                <strong><?= $escaper->escapeHtml($detectionHeader) ?></strong>
+                <?= $escaper->escapeHtml($detectionValue) ?>
                 </p>
             <?php endforeach; ?>
             </p>
@@ -49,17 +52,17 @@ $resultArray = $block->getResultArray();
         <?php elseif ($item == 'moreinfo' && strpos($value, 'https') !== false) : ?>
             <p>
                 <strong>
-                    <?= $item ?>
+                    <?= $escaper->escapeHtml($item) ?>
                 </strong>
-                <a href="<?= $value ?>" target="_blank"><?= $value ?></a>
+                <a href="<?= $escaper->escapeUrl($value) ?>" target="_blank"><?= $escaper->escapeUrl($value) ?></a>
             </p>
 	        <?php continue; ?>
         <?php endif; ?>
         <p>
             <strong>
-                <?= $item ?>
+                <?= $escaper->escapeHtml($item) ?>
             </strong>
-            <?= $value ?>
+            <?= $escaper->escapeHtml($value) ?>
         </p>
     <?php endforeach; ?>
     </div>

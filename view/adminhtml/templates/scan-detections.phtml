@@ -5,7 +5,10 @@
 * See COPYING.txt for license details.
 */
 
-/** @var \Experius\SansecReport\Block\Adminhtml\SansecReports\View\Results $block */
+/**
+ * @var \Experius\SansecReport\Block\Adminhtml\SansecReports\View\Results $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
 $resultArray = $block->getResultArray();
 $detections = $block->getDetectionAmount();
 ?>
@@ -24,15 +27,15 @@ $detections = $block->getDetectionAmount();
                     <?php if ($detectionHeader == 'moreinfo' && strpos($detectionValue, 'https') !== false) : ?>
                         <p>
                             <strong>
-                                <?= $detectionHeader ?>
+                                <?= $escaper->escapeHtml($detectionHeader) ?>
                             </strong>
-                            <a href="<?= $detectionValue ?>" target="_blank"><?= $detectionValue ?></a>
+                            <a href="<?= $escaper->escapeUrl($detectionValue) ?>" target="_blank"><?= $escaper->escapeUrl($detectionValue) ?></a>
                         </p>
                         <?php continue; ?>
                     <?php endif; ?>
                     <p>
-                        <strong><?= $detectionHeader ?></strong>
-                        <?= $detectionValue ?>
+                        <strong><?= $escaper->escapeHtml($detectionHeader) ?></strong>
+                        <?= $escaper->escapeHtml($detectionValue) ?>
                     </p>
                 <?php endforeach; ?>
                 </div>
