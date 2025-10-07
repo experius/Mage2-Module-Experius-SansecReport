@@ -2,7 +2,6 @@
     "name": "experius/module-sansecreport",
     "description": "Provides an adminpanel interface for Sansec eComscan Reports",
     "type": "magento2-module",
-    "version": "1.0.3",
     "license": "GPL-3.0",
     "authors": [
         {
